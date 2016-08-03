@@ -1,0 +1,67 @@
+<launch>
+
+  <arg name="rviz" default="true" />
+
+  <include file="$(find fcn_3d)/launch/pr2_camera_local.launch" />
+
+  <arg name="INPUT_IMAGE" value="/kinect_head_c3/rgb/image_rect_color" />
+  <arg name="INPUT_DEPTH_INFO" value="/kinect_head_c3/depth_registered/camera_info" />
+  <arg name="INPUT_CLOUD" value="/kinect_head_c3/depth_registered/points" />
+  <arg name="MANAGER" value="/kinect_head_c3/kinect_head_c3_nodelet_manager" />
+
+  <group ns="fcn_3d">
+    <node name="transformable_interactive_server"
+          pkg="jsk_interactive_marker" type="transformable_server_sample">
+      <rosparam subst_value="true">
+        display_interactive_manipulator: true
+        yaml_filename: $(find jsk_interactive_marker)/config/default_menu.yaml
+      </rosparam>
+    </node>
+    <node name="transformable_boxes"
+          pkg="fcn_3d" type="transformable_boxes.py"
+          output="screen">
+      <remap from="~server" to="transformable_interactive_server" />
+      <rosparam subst_value="true">
+        config_file: $(find fcn_3d)/config/transformable_boxes_73b2.yaml
+        save_config: true
+      </rosparam>
+    </node>
+    <node name="attention_clipper_boxes"
+          pkg="nodelet" type="nodelet"
+          args="load jsk_pcl/AttentionClipper $(arg MANAGER)">
+      <remap from="~input" to="$(arg INPUT_DEPTH_INFO)" />
+      <remap from="~input/points" to="$(arg INPUT_CLOUD)" />
+      <remap from="~input/box_array" to="transformable_boxes/output/boxes" />
+      <rosparam>
+        use_multiple_attention: true
+      </rosparam>
+    </node>
+    <node name="cluster_indices_decomposer_boxes"
+          pkg="nodelet" type="nodelet"
+          args="load jsk_pcl/ClusterPointIndicesDecomposer $(arg MANAGER)">
+      <remap from="~input" to="$(arg INPUT_CLOUD)" />
+      <remap from="~target" to="attention_clipper_boxes/output/cluster_point_indices" />
+      <rosparam>
+        approximate_sync: false
+        queue_size: 500
+      </rosparam>
+    </node>
+    <node name="label_image_decomposer"
+          pkg="jsk_perception" type="label_image_decomposer.py">
+      <remap from="~input" to="$(arg INPUT_IMAGE)" />
+      <remap from="~input/label" to="cluster_indices_decomposer_boxes/label" />
+      <rosparam>
+        approximate_sync: true
+        queue_size: 500
+      </rosparam>
+    </node>
+  </group>
+
+  <group if="$(arg rviz)">
+    <node name="rviz_pr2_annotate_73b2"
+          pkg="rviz" type="rviz"
+          args="-d $(find fcn_3d)/rvizconfig/pr2_annotate_73b2.rviz">
+    </node>
+  </group>
+
+</launch>
