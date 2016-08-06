@@ -76,8 +76,8 @@ class TransformableBoxes(object):
             PoseStampedWithName,
             self._pose_change_callback)
 
-        save = rospy.get_param('~save_config', True)
-        if save:
+        do_auto_save = rospy.get_param('~config_auto_save', True)
+        if do_auto_save:
             self.req_get_pose = rospy.ServiceProxy(
                 osp.join(self.server, 'get_pose'),
                 GetTransformableMarkerPose)

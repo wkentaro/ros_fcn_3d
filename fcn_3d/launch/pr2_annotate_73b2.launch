@@ -23,7 +23,7 @@
       <remap from="~server" to="transformable_interactive_server" />
       <rosparam subst_value="true">
         config_file: $(find fcn_3d)/config/transformable_boxes_73b2.yaml
-        save_config: true
+        config_auto_save: true
       </rosparam>
     </node>
     <node name="attention_clipper_boxes"
