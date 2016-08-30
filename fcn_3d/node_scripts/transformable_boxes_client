@@ -28,7 +28,7 @@ from std_msgs.msg import Header
 import rospy
 
 
-class TransformableBoxes(object):
+class TransformableBoxesClient(object):
 
     def __init__(self):
         self.server = rospy.resolve_name('~server')
@@ -179,5 +179,5 @@ class TransformableBoxes(object):
 
 if __name__ == '__main__':
     rospy.init_node('transformable_boxes')
-    TransformableBoxes()
+    TransformableBoxesClient()
     rospy.spin()
