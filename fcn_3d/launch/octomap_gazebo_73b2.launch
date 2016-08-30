@@ -23,4 +23,19 @@
         pkg="fcn_3d" type="interactive_kinect_gazebo_sync">
   </node>
 
+  <node name="octomap_server"
+        pkg="octomap_server" type="octomap_server_node">
+    <remap from="cloud_in" to="/camera/depth/points" />
+    <rosparam>
+      frame_id: gazebo_world
+      height_map: false
+      colored_map: true
+      resolution: 0.03
+    </rosparam>
+  </node>
+
+  <node name="rviz"
+        pkg="rviz" type="rviz">
+  </node>
+
 </launch>
