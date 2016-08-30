@@ -18,7 +18,7 @@
       </rosparam>
     </node>
     <node name="transformable_boxes"
-          pkg="fcn_3d" type="transformable_boxes.py"
+          pkg="fcn_3d" type="transformable_boxes_client"
           output="screen">
       <remap from="~server" to="transformable_interactive_server" />
       <rosparam subst_value="true">
