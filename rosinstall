@@ -1,0 +1,44 @@
+- git:
+    local-name: Octomap/octomap_mapping
+    uri: git@github.com:wkentaro/octomap_mapping.git
+    version: develop
+- git:
+    local-name: jsk-ros-pkg/jsk_common
+    uri: https://github.com/jsk-ros-pkg/jsk_common.git
+    version: master
+- git:
+    local-name: jsk-ros-pkg/jsk_model_tools
+    uri: git@github.com:wkentaro/jsk_model_tools.git
+    version: develop
+- git:
+    local-name: jsk-ros-pkg/jsk_recognition
+    uri: https://github.com/jsk-ros-pkg/jsk_recognition.git
+    version: master
+- git:
+    local-name: jsk-ros-pkg/jsk_visualization
+    uri: https://github.com/jsk-ros-pkg/jsk_visualization.git
+    version: master
+- git:
+    local-name: ros-drivers/openni2_camera
+    uri: https://github.com/ros-drivers/openni2_camera.git
+    version: indigo-devel
+- git:
+    local-name: ros-perception/image_pipeline
+    uri: https://github.com/ros-perception/image_pipeline.git
+    version: indigo
+- git:
+    local-name: ros-perception/vision_opencv
+    uri: https://github.com/ros-perception/vision_opencv.git
+    version: indigo
+- git:
+    local-name: start-jsk/rtmros_gazebo
+    uri: https://github.com/start-jsk/rtmros_gazebo.git
+    version: master
+- git:
+    local-name: turtlebot/turtlebot
+    uri: git@github.com:wkentaro/turtlebot.git
+    version: develop
+- git:
+    local-name: wkentaro/fcn-3d
+    uri: git@github.com:wkentaro/fcn-3d.git
+    version: master
