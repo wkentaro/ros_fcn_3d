@@ -1,0 +1,23 @@
+<launch>
+
+  <node name="room73b2_point_cloud_publisher"
+        pkg="fcn_3d" type="room73b2-point-cloud-publisher.l">
+  </node>
+
+  <node name="octomap_server"
+        pkg="octomap_server" type="octomap_server_node">
+    <remap from="cloud_in" to="room73b2_point_cloud_publisher/output" />
+    <rosparam>
+      frame_id: world
+      height_map: false
+      colored_map: true
+      resolution: 0.03
+    </rosparam>
+  </node>
+
+  <node name="$(anon rviz)"
+        pkg="rviz" type="rviz"
+        args="-d $(find fcn_3d)/rvizconfig/octomap_euslisp_room73b2.rviz">
+  </node>
+
+</launch>
