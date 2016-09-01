@@ -22,7 +22,7 @@
           output="screen">
       <remap from="~server" to="transformable_interactive_server" />
       <rosparam subst_value="true">
-        config_file: $(find fcn_3d)/config/transformable_boxes_73b2.yaml
+        config_file: $(find fcn_3d)/config/transformable_boxes_room73b2.yaml
         config_auto_save: true
       </rosparam>
     </node>
@@ -58,9 +58,9 @@
   </group>
 
   <group if="$(arg rviz)">
-    <node name="rviz_pr2_annotate_73b2"
+    <node name="$(anon rviz)"
           pkg="rviz" type="rviz"
-          args="-d $(find fcn_3d)/rvizconfig/pr2_annotate_73b2.rviz">
+          args="-d $(find fcn_3d)/rvizconfig/pr2_annotate_room73b2.rviz">
     </node>
   </group>
 
