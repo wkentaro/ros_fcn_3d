@@ -76,7 +76,7 @@
             )
           )
         (ros::publish (format nil "~a/output" (ros::get-name)) msg)
-        (unix::sleep 20)
+        (unix::sleep 60)
         )
       )
     )

@@ -11,7 +11,7 @@
       frame_id: world
       height_map: false
       colored_map: true
-      resolution: 0.03
+      resolution: 0.01
     </rosparam>
   </node>
 
