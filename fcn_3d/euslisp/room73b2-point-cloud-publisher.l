@@ -10,6 +10,7 @@
 
   (unless (boundp '*room73b2*)
     (room73b2)
+    (send *room73b2* :remove-spots (send *room73b2* :spots))
     (objects (list *room73b2*))
     )
 
@@ -22,7 +23,7 @@
 
   (unless (boundp '*camera-model*)
     (setq *camera-model*
-          (make-camera-from-param :pwidth 160 :pheight 120
+          (make-camera-from-param :pwidth 640 :pheight 480
                                   :fx 400 :fy 400
                                   :cx 319.5 :cy 179.5 :name "camtest"
                                   :create-viewer t))
@@ -75,7 +76,7 @@
             )
           )
         (ros::publish (format nil "~a/output" (ros::get-name)) msg)
-        (unix::usleep (* 100 1000))
+        (unix::sleep 20)
         )
       )
     )
