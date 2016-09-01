@@ -15,6 +15,10 @@
     uri: https://github.com/jsk-ros-pkg/jsk_recognition.git
     version: master
 - git:
+    local-name: jsk-ros-pkg/jsk_roseus
+    uri: https://github.com/jsk-ros-pkg/jsk_roseus.git
+    version: master
+- git:
     local-name: jsk-ros-pkg/jsk_visualization
     uri: https://github.com/jsk-ros-pkg/jsk_visualization.git
     version: master
