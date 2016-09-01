@@ -34,3 +34,7 @@
     local-name: wkentaro/fcn-3d
     uri: git@github.com:wkentaro/fcn-3d.git
     version: master
+- git:
+    local-name: wkentaro/yslam_ros
+    uri: git@github.com:wkentaro/yslam_ros.git
+    version: master
